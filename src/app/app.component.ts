@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'coins';
+  selectedCurrency: string = "USD";
+
+  constructor(){
+
+  }
+
+  sendCurrency(event:string){
+    console.log(event);
+  }
 }
