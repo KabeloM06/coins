@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-coins-list',
@@ -7,6 +11,11 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./coins-list.component.scss']
 })
 export class CoinsListComponent implements OnInit {
+
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private api : ApiService) { }
 
@@ -18,7 +27,19 @@ export class CoinsListComponent implements OnInit {
     this.api.getCurrency("USD")
     .subscribe(res => {
       console.log(res)
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator){
+      this.dataSource.paginator.firstPage
+    }
   }
 
 }

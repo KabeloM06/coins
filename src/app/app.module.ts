@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CoinsListComponent } from './components/coins-list/coins-list.component';
 import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
