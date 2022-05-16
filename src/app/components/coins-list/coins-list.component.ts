@@ -14,6 +14,8 @@ export class CoinsListComponent implements OnInit {
 
   dataSource!: MatTableDataSource<any>;
 
+  displayedColumns: string[] = ['symbol', 'current_price', 'price_change_percentage_24h', 'market_cap'];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

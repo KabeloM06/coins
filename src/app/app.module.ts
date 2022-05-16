@@ -15,6 +15,7 @@ import { CoinsListComponent } from './components/coins-list/coins-list.component
 import { CoinDetailsComponent } from './components/coin-details/coin-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatTableModule} from '@angular/material/table';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
