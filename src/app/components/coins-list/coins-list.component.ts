@@ -11,8 +11,14 @@ export class CoinsListComponent implements OnInit {
   constructor(private api : ApiService) { }
 
   ngOnInit(): void {
+    this.getAllData();
   }
 
-  
+  getAllData(){
+    this.api.getCurrency("USD")
+    .subscribe(res => {
+      console.log(res)
+    })
+  }
 
 }
