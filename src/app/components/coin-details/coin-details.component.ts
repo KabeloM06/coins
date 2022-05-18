@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 
 import {ChartConfiguration, ChartType} from 'chart.js';
 import {BaseChartDirective} from 'ng2-charts';
+import { CurrencyService } from 'src/app/services/currency.service';
 
 @Component({
   selector: 'app-coin-details',
@@ -11,7 +12,7 @@ import {BaseChartDirective} from 'ng2-charts';
   styleUrls: ['./coin-details.component.scss']
 })
 export class CoinDetailsComponent implements OnInit {
-
+  currency : string = "USD";
   coinData: any;
   coinId !: string;
   days : number = 1;
@@ -49,7 +50,7 @@ export class CoinDetailsComponent implements OnInit {
   public lineChartType: ChartType = 'line';
   @ViewChild(BaseChartDirective) myLineChart !: BaseChartDirective;
 
-  constructor(private api : ApiService, private acttivedRoute : ActivatedRoute) { }
+  constructor(private api : ApiService, private acttivedRoute : ActivatedRoute, private currencyService : CurrencyService) { }
 
   ngOnInit(): void {
     this.acttivedRoute.params
@@ -58,6 +59,11 @@ export class CoinDetailsComponent implements OnInit {
     });
     this.getCoinData();
     this.getGraphData();
+    this.currencyService.getCurrency()
+    .subscribe(res => {
+      this.currency = res;
+      this.getGraphData();
+    })
   }
 
   getCoinData(){
@@ -69,7 +75,7 @@ export class CoinDetailsComponent implements OnInit {
   }
 
   getGraphData(){
-    this.api.getCurrencyGraphData(this.coinId, "USD", 1)
+    this.api.getCurrencyGraphData(this.coinId, this.currency, 1)
     .subscribe(res => {
       //Get chart to load automatically
       setTimeout(() => {
