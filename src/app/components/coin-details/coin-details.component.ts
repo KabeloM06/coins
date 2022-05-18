@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -16,6 +16,38 @@ export class CoinDetailsComponent implements OnInit {
   coinId !: string;
   days : number = 1;
   curremcy : string = "USD";
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Price Trends',
+        backgroundColor: 'rgba(184,159,177,0.2)',
+        pointBackgroundColor: '#009688',
+        pointBorderColor: '#009688',
+        pointHoverBackgroundColor: '#009688',
+        pointHoverBorderColor: '#009688',
+      }
+    ],
+    labels: []
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      point: {
+        radius: 1
+      }
+    },
+    scales: {
+    },
+    plugins: {
+      legend: {display: true},
+    }
+  }
+
+  // Define the type of chart
+  public lineChartType: ChartType = 'line';
+  @ViewChild(BaseChartDirective) myLineChart !: BaseChartDirective;
 
   constructor(private api : ApiService, private acttivedRoute : ActivatedRoute) { }
 
