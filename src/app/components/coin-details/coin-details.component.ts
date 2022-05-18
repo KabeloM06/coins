@@ -89,7 +89,7 @@ export class CoinDetailsComponent implements OnInit {
 
   getGraphData(days: number){
     this.days = days;
-    this.api.getCurrencyGraphData(this.coinId, this.currency, 1)
+    this.api.getCurrencyGraphData(this.coinId, this.currency, days)
     .subscribe(res => {
       //Get chart to load automatically
       setTimeout(() => {
