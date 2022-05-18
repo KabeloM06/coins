@@ -7,9 +7,9 @@
                 <h2 [innerHtml]="coinData?.description?.en.split('. ')[0]" class="fw-1"></h2>
                 <div class="more-detail">
                     <span class="title">Rank: </span><span class="value">{{coinData?.market_cap_rank}}</span><br>
-                    <span class="title">Current Price: </span><span class="value">{{coinData?.market_data.current_price.usd | currency}}</span><br>
-                    <span class="title">Market Cap: </span><span class="value">{{coinData?.market_data.market_cap.usd | currency}}</span><br>
-                    <span class="title">Volume: </span><span class="value">{{coinData?.market_data.total_volume.usd | currency}}</span>
+                    <span class="title">Current Price: </span><span class="value">{{coinData?.market_data.current_price.usd | currency: currency}}</span><br>
+                    <span class="title">Market Cap: </span><span class="value">{{coinData?.market_data.market_cap.usd | currency: currency}}</span><br>
+                    <span class="title">Volume: </span><span class="value">{{coinData?.market_data.total_volume.usd | currency: currency}}</span>
                 </div>
             </div>
         </div>

@@ -63,6 +63,7 @@ export class CoinDetailsComponent implements OnInit {
     .subscribe(res => {
       this.currency = res;
       this.getGraphData();
+      this.getCoinData();
     })
   }
 
@@ -71,6 +72,18 @@ export class CoinDetailsComponent implements OnInit {
     .subscribe(res => {
       this.coinData = res;
       console.log(this.coinData);
+
+      if(this.currency === "ZAR"){
+        res.market_data.current_price.usd = res.market_data.current_price.zar;
+        res.market_data.market_cap.usd = res.market_data.market_cap.zar;
+      }
+      else if(this.currency === "GBP"){
+        res.market_data.current_price.usd = res.market_data.current_price.gbp;
+        res.market_data.market_cap.usd = res.market_data.market_cap.gbp;
+      }
+      res.market_data.current_price.usd = res.market_data.current_price.usd;
+      res.market_data.market_cap.usd = res.market_data.market_cap.usd;
+      this.coinData = res;
     })
   }
 
