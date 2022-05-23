@@ -36,7 +36,7 @@ export class CoinDetailsComponent implements OnInit {
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
       point: {
-        radius: 1
+        radius: 0
       }
     },
     scales: {
